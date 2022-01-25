@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import CameraIcon from "@mui/icons-material/PhotoCamera";
@@ -22,23 +22,39 @@ const Album = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        (async () => {
-            const response = await getImages();
-            setImages(response.data);
-            localStorage.setItem("images", JSON.stringify(images));
-
-            setLoading(false);
-        })();
+        refreshImages();
     }, [loading]);
 
-    const removeFromList = (index = 0) => {
-        // const array = images;
-        // const arraySize = array.length;
-        // if (arraySize >= 1 && arraySize - 1 >= index) {
-        //     array.splice(index, 1);
-        //     refreshImages(array);
-        //     setRefresh(refresh + 1);
-        // }
+    const refreshImages = () => {
+        setLoading(true);
+
+        const imagesLocal = JSON.parse(localStorage.getItem("images"));
+
+        if (!imagesLocal.length > 0) {
+            (async () => {
+                const response = await getImages();
+
+                setImages(response.data);
+                localStorage.setItem("images", JSON.stringify(response.data));
+            })();
+        } else {
+            setImages(imagesLocal);
+        }
+
+        setLoading(false);
+    };
+
+    const removeFromList = (index) => {
+        const array = images;
+        const arraySize = array.length;
+
+        if (arraySize >= 1 && arraySize - 1 >= index) {
+            array.splice(index, 1);
+            setImages(array);
+            localStorage.setItem("images", JSON.stringify(images));
+        }
+
+        refreshImages();
     };
 
     return (
