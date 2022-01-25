@@ -26,6 +26,7 @@ const Album = () => {
         (async () => {
             const response = await getImages();
             setImages(response.data);
+            console.log(response);
         })();
     }, []);
 
@@ -58,7 +59,7 @@ const Album = () => {
                 <main>
                     <Container sx={{ py: 8 }} maxWidth="md">
                         <Grid container spacing={4}>
-                            {images.map((image, index) => (
+                            {/* {images.map((image, index) => (
                                 <Grid item key={index} xs={12} sm={6} md={4}>
                                     <CardImage
                                         image={image}
@@ -66,7 +67,7 @@ const Album = () => {
                                         removeFromList={removeFromList}
                                     />
                                 </Grid>
-                            ))}
+                            ))} */}
                         </Grid>
                     </Container>
                 </main>

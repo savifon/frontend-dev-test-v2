@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,9 +13,13 @@ import { Stack, Snackbar, Alert } from "@mui/material";
 
 import Copyright from "../components/Copyright";
 
+import { AuthContext } from "../context/AuthContext";
+
 const theme = createTheme();
 
 const SignIn = () => {
+    const { login } = useContext(AuthContext);
+
     const credentials = {
         email: "admin@example.com",
         password: "102030@",
@@ -38,14 +42,10 @@ const SignIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        const email = data.get("email");
+        const password = data.get("password");
 
-        if (
-            data.get("email") === credentials.email &&
-            data.get("password") === credentials.password
-        ) {
-            window.location.href = "/imagens";
-        } else {
-            console.log("erradao");
+        if (!login(email, password)) {
             handleError();
         }
     };

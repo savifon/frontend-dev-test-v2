@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://tf378xyae1.execute-api.sa-east-1.amazonaws.com/prod",
+    baseURL: "https://raw.githubusercontent.com/savifon/frontend-dev-test-v2",
 });
 
 export const getImages = async () => {
-    return api.get("/images");
+    return api.get("/master/src/api/Api.js");
 };

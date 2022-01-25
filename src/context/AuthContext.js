@@ -23,16 +23,16 @@ export const AuthProvider = ({ children }) => {
 
     const login = (email, password) => {
         if (email === "admin@example.com" && password === "102030@") {
-            const loggedUser = { id: 1, email: { email } };
+            const loggedUser = JSON.stringify({ id: 1, email: email });
 
             localStorage.setItem("user", loggedUser);
             setUser(loggedUser);
 
             navigate("/");
-            return true;
+            // return true;
         }
 
-        return false;
+        // return false;
     };
 
     const logout = () => {
