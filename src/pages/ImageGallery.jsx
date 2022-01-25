@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
-import AppBar from "@mui/material/AppBar";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-// import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import CardImage from "../components/CardImage";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CardImage from "../components/CardImage";
 
 import { getImages } from "../api/Api";
+import { AuthContext } from "../context/AuthContext";
 
 const theme = createTheme();
 
 const Album = () => {
+    const { user } = useContext(AuthContext);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -58,14 +56,7 @@ const Album = () => {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <AppBar position="relative">
-                    <Toolbar>
-                        <CameraIcon sx={{ mr: 2 }} />
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Imagens | Teste de Front-end
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+                <Header user={user.name} text="Seja bem-vindo(a) ao App" />
 
                 <main>
                     <Container sx={{ py: 8 }} maxWidth="md">

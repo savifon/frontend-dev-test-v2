@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { api } from "../api/Api";
-
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -19,20 +17,23 @@ export const AuthProvider = ({ children }) => {
         }
 
         setLoading(false);
-    }, []);
+    }, [loading]);
 
     const login = (email, password) => {
+        setLoading(true);
+
         if (email === "admin@example.com" && password === "102030@") {
-            const loggedUser = JSON.stringify({ id: 1, email: email });
+            const loggedUser = JSON.stringify({
+                id: 1,
+                email: email,
+                name: "Admin",
+            });
 
             localStorage.setItem("user", loggedUser);
             setUser(loggedUser);
 
             navigate("/");
-            // return true;
         }
-
-        // return false;
     };
 
     const logout = () => {
