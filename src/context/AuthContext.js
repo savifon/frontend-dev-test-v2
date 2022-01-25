@@ -20,8 +20,6 @@ export const AuthProvider = ({ children }) => {
     }, [loading]);
 
     const login = (email, password) => {
-        setLoading(true);
-
         if (email === "admin@example.com" && password === "102030@") {
             const loggedUser = JSON.stringify({
                 id: 1,
@@ -40,6 +38,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("user");
         localStorage.removeItem("images");
         setUser(null);
+
+        navigate("/login");
     };
 
     if (loading) {

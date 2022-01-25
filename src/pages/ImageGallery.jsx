@@ -15,7 +15,7 @@ import { AuthContext } from "../context/AuthContext";
 const theme = createTheme();
 
 const Album = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -56,7 +56,12 @@ const Album = () => {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Header user={user.name} text="Seja bem-vindo(a) ao App" />
+                <Header
+                    user={user.name}
+                    text="Seja bem-vindo(a) ao App"
+                    txtLogout="Sair"
+                    logout={logout}
+                />
 
                 <main>
                     <Container sx={{ py: 8 }} maxWidth="md">
