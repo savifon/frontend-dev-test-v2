@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Stack, Snackbar, Alert } from "@mui/material";
 
-import Copyright from "../components/Copyright";
+import Footer from "../components/Footer";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -106,7 +106,8 @@ const SignIn = () => {
                         </Button>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+
+                <Footer />
 
                 <Stack spacing={2} sx={{ width: "100%" }}>
                     <Snackbar

@@ -4,14 +4,14 @@ import AppBar from "@mui/material/AppBar";
 import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import CardImage from "../components/CardImage";
-import Copyright from "../components/Copyright";
+import Footer from "../components/Footer";
 
 import { getImages } from "../api/Api";
 
@@ -26,11 +26,9 @@ const Album = () => {
     }, [loading]);
 
     const refreshImages = () => {
-        setLoading(true);
+        const imagesLocal = JSON.parse(localStorage.getItem("images")) || [];
 
-        const imagesLocal = JSON.parse(localStorage.getItem("images"));
-
-        if (!imagesLocal.length > 0) {
+        if (imagesLocal.length === 0) {
             (async () => {
                 const response = await getImages();
 
@@ -45,16 +43,15 @@ const Album = () => {
     };
 
     const removeFromList = (index) => {
+        setLoading(true);
         const array = images;
         const arraySize = array.length;
 
         if (arraySize >= 1 && arraySize - 1 >= index) {
             array.splice(index, 1);
-            setImages(array);
             localStorage.setItem("images", JSON.stringify(images));
+            refreshImages();
         }
-
-        refreshImages();
     };
 
     return (
@@ -96,12 +93,7 @@ const Album = () => {
                     </Container>
                 </main>
 
-                <Box
-                    sx={{ bgcolor: "background.paper", p: 6 }}
-                    component="footer"
-                >
-                    <Copyright />
-                </Box>
+                <Footer />
             </ThemeProvider>
         </>
     );
