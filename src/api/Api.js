@@ -5,5 +5,5 @@ export const api = axios.create({
 });
 
 export const getImages = async () => {
-    return api.get("/master/src/api/Api.js");
+    return api.get("/master/src/api/images.json");
 };

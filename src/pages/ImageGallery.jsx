@@ -14,21 +14,22 @@ import CardImage from "../components/CardImage";
 import Copyright from "../components/Copyright";
 
 import { getImages } from "../api/Api";
-import { AuthContext } from "../context/AuthContext";
 
 const theme = createTheme();
 
 const Album = () => {
-    const { user } = useContext(AuthContext);
     const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         (async () => {
             const response = await getImages();
             setImages(response.data);
-            console.log(response);
+            localStorage.setItem("images", JSON.stringify(images));
+
+            setLoading(false);
         })();
-    }, []);
+    }, [loading]);
 
     const removeFromList = (index = 0) => {
         // const array = images;
@@ -42,9 +43,6 @@ const Album = () => {
 
     return (
         <>
-            {/* {loading ? (
-                <h1>Carregando...</h1>
-            ) : ( */}
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <AppBar position="relative">
@@ -59,15 +57,25 @@ const Album = () => {
                 <main>
                     <Container sx={{ py: 8 }} maxWidth="md">
                         <Grid container spacing={4}>
-                            {/* {images.map((image, index) => (
-                                <Grid item key={index} xs={12} sm={6} md={4}>
-                                    <CardImage
-                                        image={image}
-                                        index={index}
-                                        removeFromList={removeFromList}
-                                    />
-                                </Grid>
-                            ))} */}
+                            {loading ? (
+                                <h1>Carregando...</h1>
+                            ) : (
+                                images.map((image, index) => (
+                                    <Grid
+                                        item
+                                        key={index}
+                                        xs={12}
+                                        sm={6}
+                                        md={4}
+                                    >
+                                        <CardImage
+                                            image={image}
+                                            index={index}
+                                            removeFromList={removeFromList}
+                                        />
+                                    </Grid>
+                                ))
+                            )}
                         </Grid>
                     </Container>
                 </main>
@@ -76,16 +84,9 @@ const Album = () => {
                     sx={{ bgcolor: "background.paper", p: 6 }}
                     component="footer"
                 >
-                    <Typography
-                        variant="subtitle1"
-                        align="center"
-                        color="text.secondary"
-                        component="p"
-                    ></Typography>
                     <Copyright />
                 </Box>
             </ThemeProvider>
-            {/* )} */}
         </>
     );
 };
