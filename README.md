@@ -13,12 +13,14 @@ Na página de login é feita a validação dos dados (fixos, somente no front-en
 
 -   ReactJS (+ Context API, Axios)
 -   Material UI
+-   Testing Library
+-   ...
 
 ## Configuração para desenvolvimento
 
 Para baixar e instalar o projeto, siga os passos:
 
-1. ```git clone``` neste projeto
-2. ```cd <PastaDoProjeto>```
-3. ```npm install``` ou ```yarn install```
-4. ```npm start``` ou ```yarn start```
+1. `git clone` neste projeto
+2. `cd <PastaDoProjeto>`
+3. `npm install` ou `yarn install`
+4. `npm start` ou `yarn start`
