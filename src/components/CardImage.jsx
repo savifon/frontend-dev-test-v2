@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import ZoomImage from "./ZoomImage";
+
 import { formatDate } from "../utils/js/functions";
 
 const CardImage = (props) => {
-    const { image, index, removeFromList, textButton } = props;
+    const { image, index, removeFromList, textDelete, textView } = props;
 
     return (
         <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
@@ -35,16 +37,21 @@ const CardImage = (props) => {
                 <Typography>{formatDate(image.data)}</Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: "center" }}>
+                <ZoomImage
+                    image={image.url}
+                    title={image.nome}
+                    textView="Ver"
+                />
                 <Button
                     variant="text"
                     color="error"
-                    sx={{ width: "100%" }}
+                    sx={{ width: "50%" }}
                     startIcon={<DeleteIcon />}
                     onClick={() => {
                         removeFromList(index);
                     }}
                 >
-                    {textButton}
+                    {textDelete}
                 </Button>
             </CardActions>
         </Card>

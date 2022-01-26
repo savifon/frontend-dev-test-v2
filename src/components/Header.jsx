@@ -14,7 +14,8 @@ const Header = (props) => {
                 <Grid item xs={11}>
                     <Typography variant="h6" color="inherit" noWrap>
                         <CameraIcon sx={{ mr: 1 }} />
-                        {user}, {text}
+                        {user ? `${user}, ` : ""}
+                        {text}
                     </Typography>
                 </Grid>
                 <Grid item xs={1}>
