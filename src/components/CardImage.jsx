@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { formatDate } from "../assets/js/functions";
+import { formatDate } from "../utils/js/functions";
 
 const CardImage = (props) => {
     const { image, index, removeFromList, textButton } = props;

@@ -18,37 +18,37 @@ import { AuthContext } from "../context/AuthContext";
 const theme = createTheme();
 
 const SignIn = () => {
-    const { login } = useContext(AuthContext);
+    // const { login } = useContext(AuthContext);
 
-    const credentials = {
-        email: "admin@example.com",
-        password: "102030@",
-    };
+    // const credentials = {
+    //     email: "admin@example.com",
+    //     password: "102030@",
+    // };
 
-    const [open, setOpen] = React.useState(false);
+    // const [open, setOpen] = React.useState(false);
 
-    const handleError = () => {
-        setOpen(true);
-    };
+    // const handleError = () => {
+    //     setOpen(true);
+    // };
 
-    const handleClose = (event, reason) => {
-        if (reason === "clickaway") {
-            return;
-        }
+    // const handleClose = (event, reason) => {
+    //     if (reason === "clickaway") {
+    //         return;
+    //     }
 
-        setOpen(false);
-    };
+    //     setOpen(false);
+    // };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email = data.get("email");
-        const password = data.get("password");
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     const email = data.get("email");
+    //     const password = data.get("password");
 
-        if (!login(email, password)) {
-            handleError();
-        }
-    };
+    //     if (!login(email, password)) {
+    //         handleError();
+    //     }
+    // };
 
     return (
         <ThemeProvider theme={theme}>
@@ -70,7 +70,7 @@ const SignIn = () => {
                     </Typography>
                     <Box
                         component="form"
-                        onSubmit={handleSubmit}
+                        // onSubmit={handleSubmit}
                         noValidate
                         sx={{ mt: 1 }}
                     >
@@ -80,9 +80,10 @@ const SignIn = () => {
                             fullWidth
                             id="email"
                             label="E-mail"
+                            type="email"
                             name="email"
                             autoComplete="email"
-                            defaultValue={credentials.email}
+                            // defaultValue={credentials.email}
                             autoFocus
                         />
                         <TextField
@@ -94,7 +95,7 @@ const SignIn = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            defaultValue={credentials.password}
+                            // defaultValue={credentials.password}
                         />
                         <Button
                             type="submit"
@@ -109,7 +110,7 @@ const SignIn = () => {
 
                 <Footer />
 
-                <Stack spacing={2} sx={{ width: "100%" }}>
+                {/* <Stack spacing={2} sx={{ width: "100%" }}>
                     <Snackbar
                         open={open}
                         autoHideDuration={6000}
@@ -123,7 +124,7 @@ const SignIn = () => {
                             E-mail ou senha incorretos!
                         </Alert>
                     </Snackbar>
-                </Stack>
+                </Stack> */}
             </Container>
         </ThemeProvider>
     );
