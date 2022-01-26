@@ -14,7 +14,6 @@ Na página de login é feita a validação dos dados (fixos, somente no front-en
 -   ReactJS (+ Context API, Axios)
 -   Material UI
 -   Testing Library
--   ...
 
 ## Configuração para desenvolvimento
 
